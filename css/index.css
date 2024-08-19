@@ -210,7 +210,6 @@ template {
 }
 .fontawesomeIcon,
 hr:before,
-#article-container a.headerlink:after,
 #article-container.post-content h1:before,
 #article-container.post-content h2:before,
 #article-container.post-content h3:before,
@@ -1396,6 +1395,17 @@ body {
 input::placeholder {
   color: var(--font-color);
 }
+#web_bg {
+  position: fixed;
+  z-index: -999;
+  width: 100%;
+  height: 100%;
+  background: url(https://i.imgur.com/qSFNZ9s.jpeg);
+  background-attachment: local;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 h1,
 h2,
 h3,
@@ -2115,16 +2125,6 @@ figure.highlight pre .javascript .function {
     width: 100% !important;
   }
 }
-@media screen and (min-width: 900px) {
-  .layout > div:first-child {
-    -webkit-box-ordinal-group: 2;
-    -moz-box-ordinal-group: 2;
-    -o-box-ordinal-group: 2;
-    -ms-flex-order: 2;
-    -webkit-order: 2;
-    order: 2;
-  }
-}
 .layout.hide-aside {
   max-width: 1000px;
 }
@@ -2443,7 +2443,7 @@ h1.page-title + .tag-cloud-list {
 }
 @media screen and (min-width: 900px) {
   #aside-content {
-    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 @media screen and (max-width: 900px) {
@@ -3791,20 +3791,6 @@ h1.page-title + .tag-cloud-list {
   font-size: 0.9em;
   font-family: Monaco, 'Ubuntu Mono', monospace;
   line-height: 1em;
-}
-#article-container a.headerlink:after {
-  float: right;
-  color: var(--headline-presudo);
-  content: '\f0c1';
-  font-size: 0.95em;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s;
-}
-#article-container a.headerlink:hover:after {
-  color: var(--pseudo-hover);
 }
 #article-container ol ol,
 #article-container ul ol,
